@@ -6,13 +6,14 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 13:12:42 by ekuchel           #+#    #+#              #
-#    Updated: 2023/11/27 15:25:13 by ekuchel          ###   ########.fr        #
+#    Updated: 2023/11/27 16:51:12 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 S = ./src/
 HDRS_DIR = ./includes/
 LIBFT_DIR	= ./lib/libft/
+LIBMLX_DIR = ./lib/minilibx/
 
 NAME = cub3d
 
@@ -22,10 +23,10 @@ SRC = $(S)main.c
 OBJ = $(SRC:.c=.o)
 
 HDRS = -I$(HDRS_DIR)
-LIBS =	-L$(LIBFT_DIR)
+LIBS =	-L$(LIBFT_DIR) -L$(LIBMLX_DIR)
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
-LDFLAGS = -fsanitize=address -g
+LDFLAGS = -fsanitize=address -g  -framework OpenGL -framework Appkit
 RM = /bin/rm -f
 RMDIR = /bin/rmdir
 
@@ -33,7 +34,8 @@ RMDIR = /bin/rmdir
 #-fsanitize=memory
 #-fsanitize=thread
 
-LIBFT = ./lib/libft/libft.a
+LIBFT = $(LIBFT_DIR)libft.a
+LIBMLX = $(LIBMLX_DIR)libmlx.a
 
 define ASCII_ART
 #   ________  ___  ___  ________  ________  ________
@@ -65,6 +67,9 @@ $(NAME) : $(LIBFT) $(OBJ)
 $(LIBFT):
 	make -s -C $(LIBFT_DIR)
 
+$(LIBMLX):
+	make -s -C $(LIBMLX_DIR)
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(HDRS) -c $< -o $@
 
@@ -72,6 +77,8 @@ $(LIBFT):
 #./$(NAME) 4 410 200 200
 
 clean:
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(LIBMLX_DIR)
 	$(RM) -f $(OBJ)
 
 fclean: clean
