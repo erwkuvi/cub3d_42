@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/28 20:11:23 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/11/28 19:31:47 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/11/28 20:10:43 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int	main(int argc, char **argv)
+void    ft_free_data(t_data *data)
 {
-    int     fd;
-    t_data  data;
 
-    if (argc == 2)
+}
+
+int ft_error(char *message, int ret_val, t_data *data)
+{
+    ft_putendl_fd(message, 2);
+    if (ret_val < 0)
     {
-        fd = open_map(argv[1]);
-        read_map(fd, &data);
+        if (data)
+            ft_free_data(data);
+        exit(1);
     }
-    else
-    {
-        return (ft_error("Error, wrong arguments amount", 1));
-    }
-	return (0);
+    return (ret_val);
 }
