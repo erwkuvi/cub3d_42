@@ -18,7 +18,8 @@ LIBMLX_DIR = ./lib/minilibx/
 NAME = cub3d
 
 SRC =	$(S)main.c \
-		$(S)error.c
+		$(S)error.c \
+		$(S)readfile.c
 
 # List of object files derived from the source files
 OBJ = $(SRC:.c=.o)

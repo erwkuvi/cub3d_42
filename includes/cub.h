@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:38:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/28 20:12:46 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:37:56 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@
 # include <stdbool.h>
 # include "../lib/libft/libft.h"
 # include "../lib/minilibx/mlx.h"
+# define EMPTY  '0'
+# define WALL   '1'
 
 typedef struct s_img{
     unsigned int    *img;
@@ -117,16 +119,29 @@ typedef struct s_img{
     bool            is_loaded;
 }               t_img;
 
-typedef struct s_data{
+typedef struct s_map{
+    char            **map;
+    int             y;
+    int             x;
+    char            *no_tex;
+    char            *so_tex;
+    char            *we_tex;
+    char            *ea_tex;
+    int             floor_color;
+    int             ceiling_color;
+}               t_map;
 
+typedef struct s_data{
+    t_map           *map;
+    t_img           *img;
 }               t_data;
 
 /*------error.c-------*/
-int ft_error(char *message, int ret_val, t_data *data);
+int     ft_error(char *message, int ret_val, t_data *data);
 void    ft_free_data(t_data *data);
 
 /*------readfile.c-------*/
-int open_map(char *filename);
-void    read_map(int fd, t_data *data);
+int     open_map(char *filename);
+void    read_map(int *fd, t_map *map);
 
 #endif

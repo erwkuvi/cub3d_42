@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:31:47 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/28 20:10:43 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/11/29 11:51:04 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    ft_free_data(t_data *data)
 {
-
+        free(data);
 }
 
 int ft_error(char *message, int ret_val, t_data *data)
