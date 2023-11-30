@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/30 14:33:22 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/11/30 12:01:20 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/11/30 18:05:22 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	init_data(t_data *data)
+int	instances(char *str, char c)
 {
-	data->game = calloc(1, sizeof(t_game));
-	data->img = calloc(1, sizeof(t_img));
-}
+	int	i;
+	int	inst;
 
-void	ft_cub3d(t_data *data)
-{
-	(void) data;
-	printf("Inside ft_cub3d\n");
-}
-
-int	main(int argc, char **argv)
-{
-	int		fd;
-	t_data	data;
-
-	if (argc == 2)
+	i = -1;
+	inst = 0;
+	while (str[++i])
 	{
-		fd = open_map(argv[1]);
-		init_data(&data);
-		read_map(&fd, data.game);
-		ft_cub3d(&data);
+		if (str[i] == c)
+			inst++;
 	}
-	else
-		return (ft_error("Error, wrong arguments amount", 1, &data));
-	return (0);
+	return (inst);
+}
+
+bool	empty_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 32 && str[i] != '\t')
+			return (false);
+		i++;
+	}
+	return (true);
 }

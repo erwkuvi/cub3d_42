@@ -5,92 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/29 15:37:56 by ekuchel          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 19:56:34 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 16:42:47 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 16:42:47 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:53 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 16:16:30 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 16:16:30 by erwin_kue        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwin_kue <erwin_kue@student.1337.ma>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:38:31 by erwin_kue         #+#    #+#             */
-/*   Updated: 2023/11/28 15:38:31 by erwin_kue        ###   ########.fr       */
+/*   Created: 2023/11/30 10:30:05 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/11/30 18:07:45 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,40 +24,50 @@
 # define EMPTY  '0'
 # define WALL   '1'
 
-typedef struct s_img{
-    unsigned int    *img;
-    int             *addr;
-    int             bpp;
-    int             line_length;
-    int             height;
-    int             width;
-    int             endian;
-    bool            is_loaded;
-}               t_img;
+typedef struct s_img
+{
+	unsigned int	*img;
+	int				*addr;
+	int				bpp;
+	int				line_length;
+	int				height;
+	int				width;
+	int				endian;
+	bool			is_loaded;
+}				t_img;
 
-typedef struct s_map{
-    char            **map;
-    int             y;
-    int             x;
-    char            *no_tex;
-    char            *so_tex;
-    char            *we_tex;
-    char            *ea_tex;
-    int             floor_color;
-    int             ceiling_color;
-}               t_map;
+typedef struct s_game
+{
+	char			**map;
+	int				y;
+	int				x;
+	char			*no_tex;
+	char			*so_tex;
+	char			*we_tex;
+	char			*ea_tex;
+	int				floor_color;
+	int				ceiling_color;
+}				t_game;
 
-typedef struct s_data{
-    t_map           *map;
-    t_img           *img;
-}               t_data;
+typedef struct s_data
+{
+	t_game			*game;
+	t_img			*img;
+}				t_data;
 
 /*------error.c-------*/
-int     ft_error(char *message, int ret_val, t_data *data);
-void    ft_free_data(t_data *data);
+int		ft_error(char *message, int ret_val, t_data *data);
+void	ft_free_data(t_data *data);
 
 /*------readfile.c-------*/
-int     open_map(char *filename);
-void    read_map(int *fd, t_map *map);
+int		open_map(char *filename);
+void	read_map(int *fd, t_game *game);
+
+/*------utils.c-------*/
+int		instances(char *str, char c);
+bool	empty_line(char *str);
+
+/*------color.c-------*/
+int		get_rgb(char *num);
 
 #endif
