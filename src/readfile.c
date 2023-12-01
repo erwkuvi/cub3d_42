@@ -6,14 +6,14 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/30 18:08:30 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/01 18:39:17 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static int	ft_texcheck(int fd, t_game game);
-static void	ft_checkfile(int fd, t_game game);
+//static void	generate_map(int fd, char *str, t_game *game);
+//static void	check_missing(t_game game);
 
 int	open_map(char *filename)
 {
@@ -29,101 +29,56 @@ int	open_map(char *filename)
 	return (fd);
 }
 
-static void	ft_checkfile(int fd, t_game game)
+void	check_type(char *line, t_game *game)
 {
-	//int texcheck;
-	// int colorcheck;
-	ft_texcheck(fd, game);
-    /*colorcheck = ft_colorcheck(fd, map);
-    if (texcheck && colorcheck)
-        ft_mapcheck (fd, map;*/
+	int		j;
+	int		i;
+	int		k;
+	char	**element;
+	char	*tmp;
+
+	element = ft_split("SO,WE,EA,NO,F,C", ',');
+	tmp = NULL;
+	j = upto_nonempty(line);
+	k = upto_empty(line + j);
+	i = -1;
+	while (element[++i])
+	{
+		if (!ft_strncmp(element[i], line + j, k))
+		{
+			tmp = ft_strdup(ft_strtrim(line + j + k, " \t"));
+			assign_type(tmp, i, game);
+			break ;
+		}
+	}
+	if (tmp)
+		free(tmp);
+	ft_free_array(element);
 }
+
+//static void	generate_map(int fd, char *str, t_game *game)
+//{
+//	(void) game;
+//}
+//
+//static void	check_missing(t_game game)
+//{
+//	(void) game;
+//}
 
 void	read_map(int *fd, t_game *game)
 {
 	char	*line;
 
-	get_next_line(*fd, &line);
-	while (ft_strlen(line) == 0)
+	while (get_next_line(*fd, &line))
 	{
-		get_next_line(*fd, &line);
-	}
-	ft_checkfile(*fd, *game);
-}
-
-
-void	check4sprites(int fd)
-{
-	char	*line;
-
-	printf("inside check4sprites\n");
-	while (get_next_line(fd, &line))
-	{
-		printf("%s", line);
-		printf("Line length: %zu\n", ft_strlen(line));
+		if (!empty_line(line) && valid_type(line))
+			check_type(line, game);
+		else if (!empty_line(line) && !valid_type(line))
+			break ;
 		free(line);
 	}
-	/* int     i;
-     int    so;
-     int    we;
-     int    ea;
-     int    no;
-
-     i = 0;
-     so = 0;
-     we = 0;
-     ea = 0;
-     no = 0;
-     while (line[i])
-     {
-         if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == 32)
-             so++;
-         else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == 32)
-             so++;
-         else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == 32)
-             so++;
-         else if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == 32)
-             so++;
-         i++;
-     }*/
+//	check_missing(*game);
+//	generate_map(*fd, line, game);
+	close(*fd);
 }
-
-static int	ft_texcheck(int fd, t_game game)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	(void) game;
-	while (i < 2)
-	{
-		get_next_line(fd, &line);
-		printf("%s", line);
-		printf("Line length: %zu\n", ft_strlen(line));
-		free(line);
-		i++;
-	}
-	check4sprites(fd);
-	return (0);
-}
-
-void	ft_mapcheck(int fd, t_game game)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	(void) game;
-	while (get_next_line(fd, &line))
-	{
-		if (empty_line(line))
-			continue ;
-		printf("%s", line);
-		free(line);
-		i++;
-	}
-	printf("number of lines: %d\n", i);
-}
-
-
-

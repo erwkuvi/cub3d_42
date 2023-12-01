@@ -36,7 +36,7 @@ int	get_rgb(char *num)
 	int		g;
 	int		b;
 
-	if (instances(num, ',') != 2)
+	if (n_instances(num, ',') != 2)
 		ft_error("Invalid color format", -1, NULL);
 	tmp = ft_split(num, ',');
 	len = -1;

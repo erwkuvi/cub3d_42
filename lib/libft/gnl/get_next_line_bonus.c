@@ -6,13 +6,11 @@
 /*   By: ekuchel <ekuchel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:41:08 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/10/05 15:59:50 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/01 19:04:18 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-// #include <stdio.h>
-// #include <fcntl.h>
 
 char	*ft_str_storage(int fd, char *strholder)
 {

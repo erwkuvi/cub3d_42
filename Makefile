@@ -6,7 +6,7 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 13:12:42 by ekuchel           #+#    #+#              #
-#    Updated: 2023/11/30 11:55:21 by ekuchel          ###   ########.fr        #
+#    Updated: 2023/12/01 18:58:16 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC =	$(S)main.c \
 		$(S)error.c \
 		$(S)readfile.c \
 		$(S)color.c \
-		$(S)utils.c
+		$(S)utils.c \
+		$(S)readfile_utils.c
 
 
 # List of object files derived from the source files

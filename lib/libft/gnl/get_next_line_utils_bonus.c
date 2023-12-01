@@ -6,43 +6,11 @@
 /*   By: ekuchel <ekuchel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:36:14 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/10/05 15:55:51 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/01 19:03:43 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 		i++;
-// 	return (i);
-// }
-
-char	*ft_strdup(const char *s1)
-{
-	char	*ptr;
-	size_t	len;
-	size_t	i;
-
-	i = 0;
-	len = ft_strlen((char *)s1);
-	ptr = (char *)malloc(len + 1 * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	while (i < len)
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	if (!s1)
-		return (NULL);
-	return (ptr);
-}
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
@@ -91,30 +59,3 @@ char	*ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	char	*ptr;
-// 	size_t	i;
-
-// 	if (s == NULL)
-// 		return (NULL);
-// 	if (start >= (unsigned int)ft_strlen(s))
-// 	{
-// 		start = 0;
-// 		len = 0;
-// 	}
-// 	if (len > ft_strlen(s) - (size_t)start)
-// 		len = ft_strlen(s) - (size_t)start;
-// 	ptr = (char *)malloc((len + 1) * sizeof(char));
-// 	if (ptr == NULL)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		ptr[i] = ((char *)s)[(size_t)start + i];
-// 		i++;
-// 	}
-// 	ptr[i] = '\0';
-// 	return (free((char *)s), ptr);
-// }
