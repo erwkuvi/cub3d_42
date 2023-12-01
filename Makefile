@@ -6,7 +6,7 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 13:12:42 by ekuchel           #+#    #+#              #
-#    Updated: 2023/12/01 18:58:16 by ekuchel          ###   ########.fr        #
+#    Updated: 2023/12/01 19:09:23 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,9 @@ clean:
 	make clean -C $(LIBMLX_DIR)
 	$(RM) -f $(OBJ)
 
-fclean: clean
+fclean:
+	make fclean -C $(LIBFT_DIR)
+	make clean -C $(LIBMLX_DIR)
 	$(RM) -f $(NAME)
 	@echo "$(BLUE)Cleaning cub3d... $(RESET)";
 
