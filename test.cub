@@ -1,2 +1,9 @@
-SO              textures/S.xpm
 
+SO              textures/S.xpm
+WE              textures/W.xpm
+EA            textures/E.xpm
+NO       textures/N.xpm
+
+
+F 105,90,70
+C 30,30,30

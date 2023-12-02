@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:46 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/01 18:57:29 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/02 14:05:14 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ int	upto_empty(char *line)
 	return (i);
 }
 
+bool    empty_char(char c)
+{
+    return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\v');
+}
+
+bool    valid_char(char c)
+{
+    return (c == 'S' || c == 'W' || c == 'E' || c == 'N' || c == 'F' || c == 'C');
+}
+
 bool	valid_type(char *str)
 {
 	int	i;
@@ -39,7 +49,7 @@ bool	valid_type(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (ft_strchr(VALID_TYPE, str[i]))
+		if (valid_char(str[i]))
 			return (true);
 	}
 	return (false);
@@ -47,15 +57,12 @@ bool	valid_type(char *str)
 
 bool	empty_line(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != 32 && str[i] != '\t')
-			return (false);
-		i++;
-	}
+	while (*str)
+    {
+        if (!empty_char(*str))
+            return (false);
+		str++;
+    }
 	return (true);
 }
 
@@ -82,13 +89,7 @@ void	assign_type(char *tmp, int i, t_game *game)
 	if (i == 3)
 		game->no_tex = ft_strdup(tmp);
 	if (i == 4)
-	{
 		game->floor_color = get_rgb(tmp);
-		printf("F: %s\n", tmp);
-	}
 	if (i == 5)
-	{
 		game->ceiling_color = get_rgb(tmp);
-		printf("C: %s\n", tmp);
-	}
 }

@@ -6,17 +6,17 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:54:49 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/11/30 12:36:28 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/02 14:04:04 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static bool	ft_isnumber(char *str)
+bool	ft_isnumber(char *str)
 {
 	char	*tmp;
 
-	str = ft_strtrim(str, " ");
+	str = ft_strtrim(str, EMPTY_SPACES);
 	tmp = str;
 	while (*str)
 	{
@@ -35,14 +35,19 @@ int	get_rgb(char *num)
 	int		r;
 	int		g;
 	int		b;
+    char    *trimmed;
 
 	if (n_instances(num, ',') != 2)
 		ft_error("Invalid color format", -1, NULL);
-	tmp = ft_split(num, ',');
+    trimmed = ft_strtrim(num, EMPTY_SPACES);
+	tmp = ft_split(trimmed, ',');
+    free(trimmed);
 	len = -1;
 	while (tmp[++len])
+    {
 		if (!ft_isnumber(tmp[len]))
-			ft_error("Invalid color", -1, NULL);
+			ft_error("Invalid colorrrrrr", -1, NULL);
+    }
 	if (len != 3)
 		ft_error("Invalid color format", -1, NULL);
 	r = ft_atoi(tmp[0]);

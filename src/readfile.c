@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/01 19:18:36 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/02 14:08:22 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	check_type(char *line, t_game *game)
 	char	**element;
 	char	*tmp;
 
-	printf("Inside Check_type\n");
 	element = ft_split("SO,WE,EA,NO,F,C", ',');
 	tmp = NULL;
 	j = upto_nonempty(line);
@@ -47,7 +46,7 @@ void	check_type(char *line, t_game *game)
 	{
 		if (!ft_strncmp(element[i], line + j, k))
 		{
-			tmp = ft_strdup(ft_strtrim(line + j + k, " \t"));
+			tmp = ft_strdup(ft_strtrim(line + j + k, EMPTY_SPACES));
 			assign_type(tmp, i, game);
 			break ;
 		}
@@ -71,17 +70,15 @@ void	read_map(int *fd, t_game *game)
 {
 	char	*line;
 
-	printf("inside read_mappppp\n");
 	while (get_next_line(*fd, &line))
 	{
-		printf("Here: %s", line);
 		if (!empty_line(line) && valid_type(line))
 			check_type(line, game);
 		else if (!empty_line(line) && !valid_type(line))
 			break ;
-		printf("Here\n");
 		free(line);
 	}
+//    printf("%s", line);
 //	check_missing(*game);
 //	generate_map(*fd, line, game);
 	close(*fd);

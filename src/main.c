@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/01 18:57:29 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/02 14:04:31 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int	main(int argc, char **argv)
 		fd = open_map(argv[1]);
 		init_data(&data);
 		read_map(&fd, data.game);
-		printf("SO: %s\n", data.game->so_tex);
-		printf("WE: %s\n", data.game->we_tex);
-		printf("EA: %s\n", data.game->ea_tex);
-		printf("NO: %s\n", data.game->no_tex);
-		printf("F: %d\n", data.game->floor_color);
-		printf("C: %d\n", data.game->ceiling_color);
+		printf("SO:%s\n", data.game->so_tex);
+		printf("WE:%s\n", data.game->we_tex);
+		printf("EA:%s\n", data.game->ea_tex);
+		printf("NO:%s\n", data.game->no_tex);
+		printf("F:%d\n", data.game->floor_color);
+		printf("C:%d\n", data.game->ceiling_color);
 		ft_cub3d(&data);
 	}
 	else

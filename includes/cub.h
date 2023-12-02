@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 10:30:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/01 18:21:28 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/02 13:58:33 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define EMPTY '0'
 # define WALL '1'
 # define VALID_TYPE "SWENFC"
+# define EMPTY_SPACES " \t\r\f\v\n"
 
 typedef struct s_img
 {
