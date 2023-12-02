@@ -36,6 +36,7 @@ void	ft_cub3d(t_data *data)
 {
 	(void) data;
 	printf("Inside ft_cub3d\n");
+    ft_free_data(data);
 }
 
 int	main(int argc, char **argv)

@@ -32,7 +32,8 @@ HDRS = -I$(HDRS_DIR)
 LIBS =	-L$(LIBFT_DIR) -L$(LIBMLX_DIR)
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
-LDFLAGS = -fsanitize=address -g  -framework OpenGL -framework Appkit
+#LDFLAGS = -fsanitize=address -g  -framework OpenGL -framework Appkit
+LDFLAGS = -g  -framework OpenGL -framework Appkit
 RM = /bin/rm -f
 RMDIR = /bin/rmdir
 
@@ -99,6 +100,7 @@ fclean:
 	make fclean -C $(LIBFT_DIR)
 	make clean -C $(LIBMLX_DIR)
 	$(RM) -f $(NAME)
+	$(RM) -f $(OBJ)
 	@echo "$(BLUE)Cleaning cub3d... $(RESET)";
 
 re: fclean all

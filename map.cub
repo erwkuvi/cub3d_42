@@ -3,7 +3,7 @@ SO              textures/S.xpm
 WE              textures/W.xpm
 EA            textures/E.xpm
 NO       textures/N.xpm
-
+NO
 
 C 30,30,30
 F 105,90,70
