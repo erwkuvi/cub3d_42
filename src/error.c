@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:31:47 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/02 16:54:41 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/03 12:19:50 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void    ft_free_game(t_game *game)
 
 void	ft_free_data(t_data *data)
 {
-    ft_free_game(data->game);
+    // ft_free_game(data->game);
 	free(data);
 }
 

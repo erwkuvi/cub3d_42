@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/02 14:08:22 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/03 12:23:58 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ void	check_type(char *line, t_game *game)
 //{
 //	(void) game;
 //}
+void	get_xy_map(int fd, char *line, t_game *game)
+{
+	int		y;
+	int		x;
+	char	*tmp;
+
+	y = 1;
+	x = 0;
+	(void) line; 
+	(void) game;
+	printf("%s", line);
+	while (get_next_line(fd, &tmp))
+	{
+		y++;	
+		printf("%s", tmp);
+		free (tmp);
+	}
+		printf("Height: %d\n", y);
+		printf("width: %d\n", x);
+}
 
 void	read_map(int *fd, t_game *game)
 {
@@ -78,7 +98,13 @@ void	read_map(int *fd, t_game *game)
 			break ;
 		free(line);
 	}
-//    printf("%s", line);
+	get_xy_map(*fd, line, game);
+	free(line);
+	while (get_next_line(*fd, &line))
+	{
+		printf("%s", line);
+	}
+	
 //	check_missing(*game);
 //	generate_map(*fd, line, game);
 	close(*fd);
