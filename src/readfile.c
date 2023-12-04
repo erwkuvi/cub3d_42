@@ -6,28 +6,36 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/03 12:23:58 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/04 21:08:12 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-//static void	generate_map(int fd, char *str, t_game *game);
 //static void	check_missing(t_game game);
 
-int	open_map(char *filename)
+int	*open_map(char *filename)
 {
-	int	fd;
+	int *fd;
 	int	name_len;
+	int	i;
 
+	fd = (int *)malloc(sizeof(int) * 2);
+	if (fd == NULL)
+        ft_error("Memory allocation failed", -1, NULL);
 	name_len = ft_strlen(filename) - 4;
-	fd = open(filename, O_RDONLY, 0);
-	if (fd < 0)
-		ft_error("Error, open failed", -1, NULL);
+	i = -1;
+	while (++i < 2)
+	{
+		fd[i] = open(filename, O_RDONLY, 0);
+		if (fd[i] < 0)
+			ft_error("Error, open failed", -1, NULL);
+	}
 	if ((ft_strncmp(".cub", filename + name_len, 4)))
-		ft_error("Error, wrong format", -1, NULL);
+		ft_error("Error, wrong format", -1, NULL);	
 	return (fd);
 }
+
 
 void	check_type(char *line, t_game *game)
 {
@@ -56,41 +64,59 @@ void	check_type(char *line, t_game *game)
 	ft_free_array(element);
 }
 
-//static void	generate_map(int fd, char *str, t_game *game)
-//{
-//	(void) game;
-//}
-//
-//static void	check_missing(t_game game)
-//{
-//	(void) game;
-//}
+void	generate_map(int fd, t_game *game)
+{
+	char	*line;
+	
+	(void) game;
+	printf("generate_map\n");
+	while (get_next_line(fd, &line))
+	{
+		if (!empty_line(line) && !valid_type(line))
+			break ;
+		free(line);
+	}
+}
+
+// static void	check_missing(t_game game)
+// {
+// 	(void) game;
+// }
+
+int	mapline_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	return (i);
+}
+
 void	get_xy_map(int fd, char *line, t_game *game)
 {
-	int		y;
-	int		x;
-	char	*tmp;
+	int		line_len;
 
-	y = 1;
-	x = 0;
-	(void) line; 
-	(void) game;
-	printf("%s", line);
-	while (get_next_line(fd, &tmp))
+	if (!line)
+		ft_error("Error, no map found", -1, NULL);
+	game->y = 1;
+	game->x = mapline_len(line);
+	free(line);
+	while (get_next_line(fd, &line))
 	{
-		y++;	
-		printf("%s", tmp);
-		free (tmp);
+		line_len = mapline_len(line);
+		if (line_len > game->x)
+			game->x = line_len;
+		free (line);
+		game->y++;
 	}
-		printf("Height: %d\n", y);
-		printf("width: %d\n", x);
 }
 
 void	read_map(int *fd, t_game *game)
 {
 	char	*line;
 
-	while (get_next_line(*fd, &line))
+	while (get_next_line(fd[0], &line))
 	{
 		if (!empty_line(line) && valid_type(line))
 			check_type(line, game);
@@ -98,14 +124,8 @@ void	read_map(int *fd, t_game *game)
 			break ;
 		free(line);
 	}
-	get_xy_map(*fd, line, game);
-	free(line);
-	while (get_next_line(*fd, &line))
-	{
-		printf("%s", line);
-	}
-	
-//	check_missing(*game);
-//	generate_map(*fd, line, game);
+	get_xy_map(fd[0], line, game);
+	// check_missing(*game);
+	generate_map(fd[1], game);
 	close(*fd);
 }

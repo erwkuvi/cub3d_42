@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 10:30:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/02 13:58:33 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/04 19:23:34 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_free_data(t_data *data);
 void	ft_free_array(char **array);
 
 /*------readfile.c-------*/
-int		open_map(char *filename);
+int		*open_map(char *filename);
 void	read_map(int *fd, t_game *game);
 void	check_type(char *line, t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/03 12:21:36 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/04 19:21:29 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	ft_cub3d(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
+	int		*fd;
 	t_data	data;
 
 	if (argc == 2)
 	{
 		fd = open_map(argv[1]);
 		init_data(&data);
-		read_map(&fd, data.game);
+		read_map(fd, data.game);
 		// printf("SO:%s\n", data.game->so_tex);
 		// printf("WE:%s\n", data.game->we_tex);
 		// printf("EA:%s\n", data.game->ea_tex);
