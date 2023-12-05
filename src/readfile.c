@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/05 16:39:33 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/05 22:53:17 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,41 @@ void	check_type(char *line, t_game *game)
 	ft_free_array(element);
 }
 
-void	generate_map(int fd, t_game *game)
+void	allocate_map(char **map, int fd, char *line)
+{
+	int	i;
+
+	i = 1;
+	map[0] = ft_strdup(line);
+	free(line);
+	while (get_next_line(fd, &line))
+	{
+		map[i] = ft_strdup(line);
+		free (line);
+		i++;
+	}
+}
+
+char	**generate_map(int fd, t_game *game)
 {
 	char	*line;
-	
-	(void) game;
+	char	*map;
+	int		i;
+
+	i = 1;
+	map = (char **)malloc(sizeof(char *) * game->y);
+	if (map == NULL)
+		ft_error("Error, map memory allocation failed", -1, NULL);
 	while (get_next_line(fd, &line))
 	{
 		if (!empty_line(line) && !valid_type(line))
+		{
+			allocate_map(map, fd, line);
 			break ;
+		}
 		free(line);
 	}
-	printf("Generate_map Line: \n");
-	printf("%s", line);
+	return (map);
 }
 
 // static void	check_missing(t_game game)
@@ -126,9 +148,10 @@ void	read_map(int *fd, t_game *game)
 		free(line);
 	}
 	get_xy_map(fd[0], line, game);
+	close(fd[0]);
 	check_missing(game);
-	generate_map(fd[1], game);
-	close(*fd);
+	game->map = generate_map(fd[1], game);
+	close(fd[1]);
 }
 
 void	check_missing(t_game *game)
