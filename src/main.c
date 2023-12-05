@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/04 19:21:29 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/05 16:38:09 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ void	ft_cub3d(t_data *data)
     // ft_free_data(data);
 }
 
+void	print_values(t_data data)
+{
+	printf("SO: %s\n", data.game->so_tex);
+	printf("WE: %s\n", data.game->we_tex);
+	printf("EA: %s\n", data.game->ea_tex);
+	printf("NO: %s\n", data.game->no_tex);
+	printf("Floor color: %d\n", data.game->floor_color);
+	printf("Ceiling color: %d\n", data.game->ceiling_color);
+	printf("Map Values:\n\n");
+	printf("Width: %d\n", data.game->x);
+	printf("Height: %d\n", data.game->y);
+	
+}
+
+
 int	main(int argc, char **argv)
 {
 	int		*fd;
@@ -49,12 +64,7 @@ int	main(int argc, char **argv)
 		fd = open_map(argv[1]);
 		init_data(&data);
 		read_map(fd, data.game);
-		// printf("SO:%s\n", data.game->so_tex);
-		// printf("WE:%s\n", data.game->we_tex);
-		// printf("EA:%s\n", data.game->ea_tex);
-		// printf("NO:%s\n", data.game->no_tex);
-		// printf("F:%d\n", data.game->floor_color);
-		// printf("C:%d\n", data.game->ceiling_color);
+		print_values(data);
 		ft_cub3d(&data);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/04 21:08:12 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/05 16:39:33 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ void	generate_map(int fd, t_game *game)
 	char	*line;
 	
 	(void) game;
-	printf("generate_map\n");
 	while (get_next_line(fd, &line))
 	{
 		if (!empty_line(line) && !valid_type(line))
 			break ;
 		free(line);
 	}
+	printf("Generate_map Line: \n");
+	printf("%s", line);
 }
 
 // static void	check_missing(t_game game)
@@ -125,7 +126,16 @@ void	read_map(int *fd, t_game *game)
 		free(line);
 	}
 	get_xy_map(fd[0], line, game);
-	// check_missing(*game);
+	check_missing(game);
 	generate_map(fd[1], game);
 	close(*fd);
+}
+
+void	check_missing(t_game *game)
+{
+	if (!game->ea_tex || !game->no_tex || !game->so_tex 
+		|| !game->we_tex)
+		ft_error("Error, texture are missing", -1, NULL);
+	if (game->floor_color == -1 || game->ceiling_color == -1)
+		ft_error("Error, ceiling/floor color missing", -1, NULL);
 }

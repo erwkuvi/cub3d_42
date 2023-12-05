@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 10:30:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/04 19:23:34 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/05 16:31:32 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_free_array(char **array);
 int		*open_map(char *filename);
 void	read_map(int *fd, t_game *game);
 void	check_type(char *line, t_game *game);
+void	check_missing(t_game *game);
 
 /*------readfile_utils.c-------*/
 bool	valid_type(char *str);
