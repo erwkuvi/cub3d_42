@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 19:57:25 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/05 22:53:17 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/06 14:16:20 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	check_type(char *line, t_game *game)
 	ft_free_array(element);
 }
 
-void	allocate_map(char **map, int fd, char *line)
+void	allocate_map(char **map, int fd, char *line, t_game *game)
 {
 	int	i;
 
 	i = 1;
 	map[0] = ft_strdup(line);
 	free(line);
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &line) && i < game->y)
 	{
 		map[i] = ft_strdup(line);
 		free (line);
@@ -82,10 +82,8 @@ void	allocate_map(char **map, int fd, char *line)
 char	**generate_map(int fd, t_game *game)
 {
 	char	*line;
-	char	*map;
-	int		i;
+	char	**map;
 
-	i = 1;
 	map = (char **)malloc(sizeof(char *) * game->y);
 	if (map == NULL)
 		ft_error("Error, map memory allocation failed", -1, NULL);
@@ -93,7 +91,7 @@ char	**generate_map(int fd, t_game *game)
 	{
 		if (!empty_line(line) && !valid_type(line))
 		{
-			allocate_map(map, fd, line);
+			allocate_map(map, fd, line, game);
 			break ;
 		}
 		free(line);
@@ -122,16 +120,22 @@ void	get_xy_map(int fd, char *line, t_game *game)
 
 	if (!line)
 		ft_error("Error, no map found", -1, NULL);
-	game->y = 1;
+	if (valid_map(line))
+        game->y = 1;
 	game->x = mapline_len(line);
 	free(line);
 	while (get_next_line(fd, &line))
 	{
-		line_len = mapline_len(line);
-		if (line_len > game->x)
-			game->x = line_len;
-		free (line);
-		game->y++;
+        if (valid_map(line))
+        {
+            line_len = mapline_len(line);
+            if (line_len > game->x)
+                game->x = line_len;
+            free (line);
+            game->y++;
+        }
+        else
+            break;
 	}
 }
 
@@ -161,4 +165,6 @@ void	check_missing(t_game *game)
 		ft_error("Error, texture are missing", -1, NULL);
 	if (game->floor_color == -1 || game->ceiling_color == -1)
 		ft_error("Error, ceiling/floor color missing", -1, NULL);
+    if (!game->y)
+        ft_error("Error, no map found", -1 ,NULL);
 }

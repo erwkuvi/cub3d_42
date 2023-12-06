@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/06 13:31:55 by ekuchel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 10:30:05 by ekuchel           #+#    #+#             */
@@ -69,6 +81,7 @@ void	check_type(char *line, t_game *game);
 void	check_missing(t_game *game);
 
 /*------readfile_utils.c-------*/
+bool    valid_map(char *line);
 bool	valid_type(char *str);
 bool	empty_line(char *str);
 int		upto_empty(char *line);

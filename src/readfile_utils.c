@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:46 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/02 14:05:14 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:10:40 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ bool    empty_char(char c)
 bool    valid_char(char c)
 {
     return (c == 'S' || c == 'W' || c == 'E' || c == 'N' || c == 'F' || c == 'C');
+}
+
+bool    valid_map_char(char c)
+{
+    return (c == '0' || c == '1' || c == 'N' || c == 'S'
+            || c == 'E' || c == 'W' || c == ' ' || c == '\n');
+}
+
+bool    valid_map(char *line)
+{
+    int	i;
+
+    i = -1;
+    while (line[++i])
+    {
+        if (!valid_map_char(line[i]))
+            return (false);
+    }
+    return (true);
 }
 
 bool	valid_type(char *str)

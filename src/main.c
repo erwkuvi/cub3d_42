@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/06 13:47:06 by ekuchel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
@@ -64,7 +76,7 @@ int	main(int argc, char **argv)
 		fd = open_map(argv[1]);
 		init_data(&data);
 		read_map(fd, data.game);
-		print_values(data);
+//		print_values(data);
 		ft_cub3d(&data);
 	}
 	else
