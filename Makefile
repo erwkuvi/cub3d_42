@@ -22,7 +22,8 @@ SRC =	$(S)main.c \
 		$(S)readfile.c \
 		$(S)color.c \
 		$(S)utils.c \
-		$(S)readfile_utils.c
+		$(S)readfile_utils.c \
+		$(S)readfile_utils2.c
 
 
 # List of object files derived from the source files

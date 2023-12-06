@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 13:47:06 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:59:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int	main(int argc, char **argv)
 		ft_cub3d(&data);
 	}
 	else
-		return (ft_error("Error, wrong arguments amount", 1, &data));
+		return (ft_error("Error, wrong arguments amount", 1, &data, data.game));
 	return (0);
 }

@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 09:10:47 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/06 22:47:05 by ekuchel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:31:47 by ekuchel           #+#    #+#             */
@@ -42,9 +54,10 @@ void	ft_free_array(char **array)
 	free(array);
 }
 
-int	ft_error(char *message, int ret_val, t_data *data)
+int	ft_error(char *message, int ret_val, t_data *data, t_game *game)
 {
 	ft_putendl_fd(message, 2);
+    ft_free_game(game);
 	if (ret_val < 0)
 	{
 		if (data)

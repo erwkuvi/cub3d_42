@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 13:31:55 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:59:05 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_data
 }				t_data;
 
 /*------error.c-------*/
-int		ft_error(char *message, int ret_val, t_data *data);
+int		ft_error(char *message, int ret_val, t_data *data, t_game *game);
 void	ft_free_data(t_data *data);
 void	ft_free_array(char **array);
 
@@ -84,9 +84,14 @@ void	check_missing(t_game *game);
 bool    valid_map(char *line);
 bool	valid_type(char *str);
 bool	empty_line(char *str);
+bool    valid_char_map(char c);
+bool    valid_map_char(char c);
 int		upto_empty(char *line);
 int		upto_nonempty(char *line);
 void	assign_type(char *tmp, int i, t_game *game);
+
+/*------readfile_utils2.c-------*/
+
 
 /*------utils.c-------*/
 int		n_instances(char *str, char c);
