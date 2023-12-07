@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 22:59:05 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 14:49:21 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int		upto_nonempty(char *line);
 void	assign_type(char *tmp, int i, t_game *game);
 
 /*------readfile_utils2.c-------*/
-
 
 /*------utils.c-------*/
 int		n_instances(char *str, char c);

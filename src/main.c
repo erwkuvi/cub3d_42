@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 22:59:24 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 13:53:00 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,17 @@ void	print_values(t_data data)
 	printf("Map Values:\n\n");
 	printf("Width: %d\n", data.game->x);
 	printf("Height: %d\n", data.game->y);
-	
+
+    if (data.game->map)
+    {
+        int i = 0;
+        while (i < data.game->y) {
+            printf("%s", data.game->map[i]);
+            i++;
+            printf("\n%d\n", i);
+        }
+    }
+    printf("%zu\n", ft_strlen(data.game->map[0]));
 }
 
 

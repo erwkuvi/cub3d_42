@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 23:03:04 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:07:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,27 +117,25 @@ void    map_check(char **map, int x, int y)
 void    map_len_check(t_game *game, char **map)
 {
     int     i;
-    char    *tmp;
-    char    *tmp2;
-    int     len;
+//    char    *tmp;
+//    char    *tmp2;
+    (void) game;
 
     i = 0;
     while (map[i])
     {
-        len = ft_strlen(map[i]);
-        if (len < game->x)
-        {
-            tmp = calloc(1, sizeof(char) * (1 + game->x - len));
-            ft_memset(tmp, ' ', game->x - len);
-            tmp[game->x - len] = '\0';
-            tmp2 = map[i];
-            map[i] = ft_strjoin(tmp2, tmp);
-            free(tmp2);
-            free(tmp);
-        }
+//        if ((int)ft_strlen(map[i]) < game->x)
+//        {
+//            tmp = calloc(1, sizeof(char) * (1 + game->x - ft_strlen(map[i])));
+//            ft_memset(tmp, ' ', game->x - ft_strlen(map[i]));
+//            tmp[game->x - ft_strlen(map[i])] = '\0';
+////            tmp2 = map[i];
+//            map[i] = ft_strjoin(map[i], tmp);
+////            free(tmp2);
+//            free(tmp);
+//        }
         i++;
     }
-    map_check(map, 0, 0);
 }
 
 char	**generate_map(int fd, t_game *game)
@@ -157,18 +155,7 @@ char	**generate_map(int fd, t_game *game)
 		}
 		free(line);
 	}
-    map_len_check(game, map);
 	return (map);
-}
-
-int	mapline_len(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	return (i);
 }
 
 void	get_xy_map(int fd, char *line, t_game *game)
@@ -179,13 +166,13 @@ void	get_xy_map(int fd, char *line, t_game *game)
 		ft_error("Error, no map found", -1, NULL, game);
 	if (valid_map(line))
         game->y = 1;
-	game->x = mapline_len(line);
+	game->x = ft_strlen(line);
 	free(line);
 	while (get_next_line(fd, &line))
 	{
         if (valid_map(line))
         {
-            line_len = mapline_len(line);
+            line_len = ft_strlen(line);
             if (line_len > game->x)
                 game->x = line_len;
             free (line);
@@ -212,6 +199,14 @@ void	read_map(int *fd, t_game *game)
 	close(fd[0]);
 	check_missing(game);
 	game->map = generate_map(fd[1], game);
+    printf("%s", game->map[7]);
+    printf("\n");
+    int i = -1;
+    while(game->map[0][++i] != '\n')
+        printf("%c", game->map[7][i]);
+    printf("\n");
+    map_len_check(game, game->map);
+//    map_check(game->map, 0, 0);
 	close(fd[1]);
 }
 
