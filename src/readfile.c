@@ -202,7 +202,7 @@ void	read_map(int *fd, t_game *game)
     printf("%s", game->map[7]);
     printf("\n");
     int i = -1;
-    while(game->map[0][++i] != '\n')
+    while(game->map[0][++i])
         printf("%c", game->map[7][i]);
     printf("\n");
     map_len_check(game, game->map);

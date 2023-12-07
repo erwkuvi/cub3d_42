@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 22:53:46 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 22:55:44 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:18:52 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool    valid_char_map(char c)
 bool    valid_map_char(char c)
 {
     return (c == '0' || c == '1' || c == 'N' || c == 'S'
-            || c == 'E' || c == 'W' || c == ' ' || c == '\n');
+            || c == 'E' || c == 'W' || c == ' ');
 }
 
 void	assign_type(char *tmp, int i, t_game *game)
