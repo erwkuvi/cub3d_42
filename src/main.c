@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 13:53:00 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:22:35 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_values(t_data data)
 	printf("Floor color: %d\n", data.game->floor_color);
 	printf("Ceiling color: %d\n", data.game->ceiling_color);
 	printf("Map Values:\n\n");
-	printf("Width: %d\n", data.game->x);
+	printf("Width: %zu\n", data.game->x);
 	printf("Height: %d\n", data.game->y);
 
     if (data.game->map)
@@ -90,6 +90,6 @@ int	main(int argc, char **argv)
 		ft_cub3d(&data);
 	}
 	else
-		return (ft_error("Error, wrong arguments amount", 1, &data, data.game));
+		return (ft_error("wrong arguments amount", 1));
 	return (0);
 }

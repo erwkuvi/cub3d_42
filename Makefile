@@ -33,7 +33,7 @@ HDRS = -I$(HDRS_DIR)
 LIBS =	-L$(LIBFT_DIR) -L$(LIBMLX_DIR)
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
-LDFLAGS = -fsanitize=address -g  -framework OpenGL -framework Appkit
+LDFLAGS = -fsanitize=address -g -framework OpenGL -framework Appkit
 #LDFLAGS = -g  -framework OpenGL -framework Appkit
 RM = /bin/rm -f
 RMDIR = /bin/rmdir

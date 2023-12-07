@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 22:53:46 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 15:18:52 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:24:39 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@ bool    valid_char_map(char c)
 bool    valid_map_char(char c)
 {
     return (c == '0' || c == '1' || c == 'N' || c == 'S'
-            || c == 'E' || c == 'W' || c == ' ');
+            || c == 'E' || c == 'W' || c == ' ' || c == '\n');
 }
 
 void	assign_type(char *tmp, int i, t_game *game)
 {
     if (i == 0 && game->so_tex)
-        ft_error("Error, multiple south sprites existing", -1, NULL, game);
+        ft_error("multiple south sprites existing", -1);
     else if (i == 1 && game->we_tex)
-        ft_error("Error, multiple west sprites existing", -1, NULL, game);
+        ft_error("multiple west sprites existing", -1);
     else if (i == 2 && game->ea_tex)
-        ft_error("Error, multiple east sprites existing", -1, NULL, game);
+        ft_error("multiple east sprites existing", -1);
     else if (i == 3 && game->no_tex)
-        ft_error("Error, multiple north sprites existing", -1, NULL, game);
+        ft_error("multiple north sprites existing", -1);
     else if (i == 4 && game->floor_color != -1)
-        ft_error("Error, multiple floor color values existing", -1, NULL, game);
+        ft_error("multiple floor color values existing", -1);
     else if (i == 5 && game->ceiling_color != -1)
-        ft_error("Error, multiple ceiling color values existing", -1, NULL, game);
+        ft_error("multiple ceiling color values existing", -1);
     if (i == 0)
         game->so_tex = ft_strdup(tmp);
     if (i == 1)
