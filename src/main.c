@@ -6,19 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 18:22:35 by ekuchel          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:42:05 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/05 16:38:09 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 19:04:56 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +34,9 @@ void	init_data(t_data *data)
 
 void	ft_cub3d(t_data *data)
 {
-	(void) data;
-	// printf("Inside ft_cub3d\n");
-    // ft_free_data(data);
+    data->mlx = mlx_init();
+    data->win = mlx_new_window(data.mlx, 1200, 720, "cub3d");
+
 }
 
 void	print_values(t_data data)
@@ -86,8 +74,9 @@ int	main(int argc, char **argv)
 		fd = open_map(argv[1]);
 		init_data(&data);
 		read_map(fd, data.game);
-//		print_values(data);
-		ft_cub3d(&data);
+
+		print_values(data);
+//		ft_cub3d(&data);
 	}
 	else
 		return (ft_error("wrong arguments amount", 1));

@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 18:22:02 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/07 19:20:42 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_game
 
 typedef struct s_data
 {
+    int			    box_size;
     void		    *mlx;
     void		    *win;
 	t_game			*game;
@@ -113,8 +114,6 @@ void	ft_free_array(char **array);
 /*------readfile.c-------*/
 int		*open_map(char *filename);
 void	read_map(int *fd, t_game *game);
-void	check_type(char *line, t_game *game);
-void	check_missing(t_game *game);
 
 /*------readfile_utils.c-------*/
 bool    valid_map(char *line);
@@ -126,7 +125,12 @@ int		upto_empty(char *line);
 int		upto_nonempty(char *line);
 void	assign_type(char *tmp, int i, t_game *game);
 
-/*------readfile_utils2.c-------*/
+/*------readfile_utils3.c-------*/
+void	check_missing(t_game *game);
+void    wall_checker(char **map, int x, int y);
+void    map_check(char **map, int x, int y);
+void	check_type(char *line, t_game *game);
+void    map_len_check(t_game *game);
 
 /*------utils.c-------*/
 int		n_instances(char *str, char c);
