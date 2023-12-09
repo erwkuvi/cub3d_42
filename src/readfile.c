@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 18:40:45 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/09 13:56:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 int	*open_map(char *filename)
 {
-	int *fd;
+	int	*fd;
 	int	name_len;
 	int	i;
 
 	fd = (int *)malloc(sizeof(int) * 2);
 	if (fd == NULL)
-        ft_error("Memory allocation failed", -1);
+		ft_error("Memory allocation failed", -1);
 	name_len = ft_strlen(filename) - 4;
 	if ((ft_strncmp(".cub", filename + name_len, 4)))
 		ft_error("wrong format", -1);
@@ -38,17 +38,17 @@ int	*open_map(char *filename)
 
 void	allocate_map(char **map, int fd, char *line, t_game *game)
 {
-	int	    i;
+	int	i;
 
 	i = 1;
 	map[0] = ft_strdup(ft_strtrim(line, "\n"));
-    game->x = ft_strlen(map[0]);
+	game->x = ft_strlen(map[0]);
 	free(line);
 	while (get_next_line(fd, &line) && i < game->y)
 	{
 		map[i] = ft_strdup(ft_strtrim(line, "\n"));
-        if (ft_strlen(map[i]) > game->x)
-            game->x = ft_strlen(map[i]);
+		if (ft_strlen(map[i]) > game->x)
+			game->x = ft_strlen(map[i]);
 		free (line);
 		i++;
 	}
@@ -56,10 +56,10 @@ void	allocate_map(char **map, int fd, char *line, t_game *game)
 
 char	**generate_map(int fd, t_game *game)
 {
-	char    *line;
-	char    **map;
+	char	*line;
+	char	**map;
 
-    map = (char **)malloc(sizeof(char *) * game->y);
+	map = (char **)malloc(sizeof(char *) * game->y);
 	if (map == NULL)
 		ft_error("map memory allocation failed", -1);
 	while (get_next_line(fd, &line))
@@ -79,17 +79,17 @@ void	get_height(int fd, char *line, t_game *game)
 	if (!line)
 		ft_error("no map found", -1);
 	if (valid_map(line))
-        game->y = 1;
+		game->y = 1;
 	free(line);
 	while (get_next_line(fd, &line))
 	{
-        if (valid_map(line))
-        {
-            free (line);
-            game->y++;
-        }
-        else
-            break;
+		if (valid_map(line))
+		{
+			free (line);
+			game->y++;
+		}
+		else
+			break ;
 	}
 }
 
@@ -109,7 +109,6 @@ void	read_map(int *fd, t_game *game)
 	close(fd[0]);
 	check_missing(game);
 	game->map = generate_map(fd[1], game);
-    map_len_check(game);
-
+	map_len_check(game);
 	close(fd[1]);
 }

@@ -6,33 +6,35 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:46 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/06 14:10:40 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/09 15:40:16 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-bool    empty_char(char c)
+bool	empty_char(char c)
 {
-    return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\v');
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\r' || c == '\f' || c == '\v');
 }
 
-bool    valid_char(char c)
+bool	valid_char(char c)
 {
-    return (c == 'S' || c == 'W' || c == 'E' || c == 'N' || c == 'F' || c == 'C');
+	return (c == 'S' || c == 'W' || c == 'E'
+		|| c == 'N' || c == 'F' || c == 'C');
 }
 
-bool    valid_map(char *line)
+bool	valid_map(char *line)
 {
-    int	i;
+	int	i;
 
-    i = -1;
-    while (line[++i])
-    {
-        if (!valid_map_char(line[i]))
-            return (false);
-    }
-    return (true);
+	i = -1;
+	while (line[++i])
+	{
+		if (!valid_map_char(line[i]))
+			return (false);
+	}
+	return (true);
 }
 
 bool	valid_type(char *str)
@@ -51,11 +53,10 @@ bool	valid_type(char *str)
 bool	empty_line(char *str)
 {
 	while (*str)
-    {
-        if (!empty_char(*str))
-            return (false);
+	{
+		if (!empty_char(*str))
+			return (false);
 		str++;
-    }
+	}
 	return (true);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:01:20 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/01 17:43:20 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/09 15:40:56 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,3 @@ int	n_instances(char *str, char c)
 	}
 	return (inst);
 }
-
-
-

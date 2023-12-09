@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:22:45 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/07 19:20:42 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/09 14:17:33 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,36 +50,37 @@ typedef struct s_img
 	bool			is_loaded;
 }				t_img;
 
-typedef struct s_sprite{
-    int		        x;
-    int		        y;
-    int		        distance;
-    t_img           *north;
-    t_img	        *south;
-    t_img	        *west;
-    t_img	        *east;
+typedef struct s_sprite
+{
+	int				x;
+	int				y;
+	int				distance;
+	t_img			*north;
+	t_img			*south;
+	t_img			*west;
+	t_img			*east;
 }				t_sprite;
 
 typedef struct s_player
 {
-    void	        *p_img;
-    int		        width;
-    int		        height;
-    double	        x;
-    double	        y;
-    int		        turn_direction;
-    int		        walk_direction;
-    int		        rotation_direction;
-    double	        angle;
-    char	        view;
+	void			*p_img;
+	int				width;
+	int				height;
+	double			x;
+	double			y;
+	int				turn_direction;
+	int				walk_direction;
+	int				rotation_direction;
+	double			angle;
+	char			view;
 
 }				t_player;
 
 typedef struct s_game
 {
 	char			**map;
-	int				    y;
-	size_t				x;
+	int				y;
+	size_t			x;
 	char			*no_tex;
 	char			*so_tex;
 	char			*we_tex;
@@ -90,25 +91,25 @@ typedef struct s_game
 
 typedef struct s_data
 {
-    int			    box_size;
-    void		    *mlx;
-    void		    *win;
+	int				box_size;
+	void			*mlx;
+	void			*win;
 	t_game			*game;
 	t_img			*img;
-    t_img		    *img_game;
-    t_sprite        *sprite;
-    t_player        *player;
-    double		    *rays_dist;
-    double		    *rays_x;
-    double		    *rays_y;
-    double		    *ray_angle;
-    bool		    *is_horizontal;
+	t_img			*img_game;
+	t_sprite		*sprite;
+	t_player		*player;
+	double			*rays_dist;
+	double			*rays_x;
+	double			*rays_y;
+	double			*ray_angle;
+	bool			*is_horizontal;
 }				t_data;
 
 /*------error.c-------*/
 int		ft_error(char *message, int ret_val);
 void	ft_free_data(t_data *data);
-int 	ft_free(t_data *d);
+int		ft_free(t_data *d);
 void	ft_free_array(char **array);
 
 /*------readfile.c-------*/
@@ -116,26 +117,26 @@ int		*open_map(char *filename);
 void	read_map(int *fd, t_game *game);
 
 /*------readfile_utils.c-------*/
-bool    valid_map(char *line);
+bool	valid_map(char *line);
 bool	valid_type(char *str);
 bool	empty_line(char *str);
-bool    valid_char_map(char c);
-bool    valid_map_char(char c);
+bool	valid_char_map(char c);
+bool	valid_map_char(char c);
 int		upto_empty(char *line);
 int		upto_nonempty(char *line);
 void	assign_type(char *tmp, int i, t_game *game);
 
 /*------readfile_utils3.c-------*/
 void	check_missing(t_game *game);
-void    wall_checker(char **map, int x, int y);
-void    map_check(char **map, int x, int y);
+void	wall_checker(char **map, int x, int y);
+void	map_check(char **map, int x, int y);
 void	check_type(char *line, t_game *game);
-void    map_len_check(t_game *game);
+void	map_len_check(t_game *game);
 
 /*------utils.c-------*/
 int		n_instances(char *str, char c);
 
 /*------color.c-------*/
-int		get_rgb(char *num);
+int		get_rgb(char *num, int r, int g, int b);
 
 #endif
