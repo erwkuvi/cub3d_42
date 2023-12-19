@@ -3,27 +3,41 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 13:12:42 by ekuchel           #+#    #+#              #
-#    Updated: 2023/12/01 19:09:23 by ekuchel          ###   ########.fr        #
+#    Updated: 2023/12/15 19:49:14 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-S = ./src/
-HDRS_DIR = ./includes/
+S = ./src/parser/
+SR = ./src/raycasting/
+HDRS_DIR = ./inc/
 LIBFT_DIR	= ./lib/libft/
-LIBMLX_DIR = ./lib/minilibx/
+LIBMLX_DIR = ./mlx/
 
 NAME = cub3d
 
-SRC =	$(S)main.c \
+SRC =	main.c \
 		$(S)error.c \
 		$(S)readfile.c \
 		$(S)color.c \
 		$(S)utils.c \
 		$(S)readfile_utils.c \
-		$(S)readfile_utils2.c
+		$(S)readfile_utils2.c \
+		$(S)readfile_utils3.c \
+		$(S)paths.c \
+		$(SR)draw.c \
+		$(SR)get_dist.c \
+		$(SR)horizontal.c \
+		$(SR)init_pos.c \
+		$(SR)init.c \
+		$(SR)keys.c \
+		$(SR)keys2.c \
+		$(SR)shading.c \
+		$(SR)vertical.c \
+		$(SR)wall_collisions.c
+
 
 
 # List of object files derived from the source files
@@ -33,7 +47,7 @@ HDRS = -I$(HDRS_DIR)
 LIBS =	-L$(LIBFT_DIR) -L$(LIBMLX_DIR)
 CC = @gcc
 CFLAGS = -Wall -Werror -Wextra
-LDFLAGS = -fsanitize=address -g -framework OpenGL -framework Appkit
+LDFLAGS = -framework OpenGL -framework Appkit
 #LDFLAGS = -g  -framework OpenGL -framework Appkit
 RM = /bin/rm -f
 RMDIR = /bin/rmdir
@@ -74,7 +88,7 @@ BANNER_CUB3D = @echo "$$ASCII_ART"
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJ)
+$(NAME) : $(LIBFT) $(LIBMLX) $(OBJ)
 	@echo "$(RED)";
 	$(BANNER_CUB3D)
 	@echo "$(GREEN)Cub3d Done!$(RESET)";

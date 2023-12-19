@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   readfile_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:57:02 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/09 15:40:40 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/15 20:01:44 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../inc/cub3d.h"
 
-void	map_check(char **map, int x, int y)
+void	map_check(t_data *d, char **map, int x, int y)
 {
 	int	player;
 
@@ -24,20 +24,20 @@ void	map_check(char **map, int x, int y)
 		{
 			if (valid_char_map(map[y][x]))
 				if (++player > 1)
-					ft_error("more than one player", -1);
+					ft_error(d, "more than one player");
 			if (!valid_map_char(map[y][x]))
-				ft_error("wrong map format", -1);
+				ft_error(d, "wrong map format");
 			if (map[y][x] == '0' || valid_char_map(map[y][x]))
-				wall_checker(map, x, y);
+				wall_checker(d, map, x, y);
 			x++;
 		}
 		y++;
 	}
 	if (!player)
-		ft_error("no player available", -1);
+		ft_error(d, "no player available");
 }
 
-void	check_type(char *line, t_game *game)
+void	check_type(t_data *d, char *line, t_game *game)
 {
 	int		j;
 	int		i;
@@ -54,8 +54,8 @@ void	check_type(char *line, t_game *game)
 	{
 		if (!ft_strncmp(element[i], line + j, k))
 		{
-			tmp = ft_strdup(ft_strtrim(line + j + k, EMPTY_SPACES));
-			assign_type(tmp, i, game);
+			tmp = ft_strtrim(line + j + k, EMPTY_SPACES);
+			assign_type(d, tmp, i, game);
 			break ;
 		}
 	}
@@ -64,40 +64,39 @@ void	check_type(char *line, t_game *game)
 	ft_free_array(element);
 }
 
-void	wall_checker(char **map, int x, int y)
+void	wall_checker(t_data *d, char **map, int x, int y)
 {
 	if ((x == 0 || y == 0) || (map[y][x + 1] == ' ' || map[y][x + 1] == 0)
 		|| (map[y - 1][x] == ' ' || map[y - 1][x] == 0) || (map[y + 1][x] == ' '
 		|| map[y + 1][x] == 0) || (map[y][x - 1] == ' ' || map[y][x - 1] == 0))
 	{
-		ft_free_array(map);
-		ft_error("invalid map format", -1);
+		ft_error(d, "invalid map format");
 	}
 }
 
-void	check_missing(t_game *game)
+void	check_missing(t_data *d, t_game *game)
 {
 	if (!game->ea_tex || !game->no_tex || !game->so_tex
 		|| !game->we_tex)
-		ft_error("texture are missing", -1);
+		ft_error(d, "one or more textures are missing");
 	if (game->floor_color == -1 || game->ceiling_color == -1)
-		ft_error("ceiling/floor color missing", -1);
+		ft_error(d, "ceiling/floor color missing");
 	if (!game->y)
-		ft_error("map missing", -1);
+		ft_error(d, "map missing");
 }
 
-void	map_len_check(t_game *game)
+void	map_len_check(t_data *d, t_game *game)
 {
 	int		i;
 	char	*tmp;
 	char	*tmp2;
-	size_t	len;
+	int		len;
 
 	i = 0;
 	while (game->map[i])
 	{
-		len = ft_strlen(game->map[i]);
-		if (ft_strlen(game->map[i]) < game->x)
+		len = (int)ft_strlen(game->map[i]);
+		if ((int)ft_strlen(game->map[i]) < game->x)
 		{
 			tmp = calloc(1, sizeof(char) * (1 + game->x - len));
 			ft_memset(tmp, ' ', game->x - len);
@@ -109,5 +108,5 @@ void	map_len_check(t_game *game)
 		}
 		i++;
 	}
-	map_check(game->map, 0, 0);
+	map_check(d, game->map, 0, 0);
 }
