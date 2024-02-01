@@ -6,25 +6,23 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:10:47 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/15 19:36:03 by ekuchel          ###   ########.fr       */
+/*   Updated: 2023/12/21 14:53:31 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	ft_free_array(char **array)
+static void	free_sprite(t_data *d)
 {
-	int	i;
-
-	i = 0;
-	if (!array)
-		return ;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	if (d->sprite->east)
+		free(d->sprite->east);
+	if (d->sprite->north)
+		free(d->sprite->north);
+	if (d->sprite->west)
+		free(d->sprite->west);
+	if (d->sprite->south)
+		free(d->sprite->south);
+	free(d->sprite);
 }
 
 static void	free_game(t_game *game)
@@ -74,11 +72,7 @@ int	ft_clean(t_data *d)
 			mlx_destroy_image(d->mlx, d->sprite->east->img);
 		if (d->img_game)
 			mlx_destroy_image(d->mlx, d->img_game);
-		free(d->sprite->east);
-		free(d->sprite->north);
-		free(d->sprite->west);
-		free(d->sprite->south);
-		free(d->sprite);
+		free_sprite(d);
 	}
 	ft_clear_res(d);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: eramusho <eramusho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:04:24 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/15 19:36:38 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:12:30 by eramusho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ void	load_texture(t_data *d, t_img *img, char *path)
 			&(img->width), &(img->height));
 	if (img->img == NULL)
 	{
-		free(path);
-		ft_error(d, "Invalid texture");
+		ft_error(d, "Invalid textures");
 	}
 	img->addr = (int *) mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 			&(img->line_length), &(img->endian));
 	if (img->addr == NULL)
 	{
-		free(path);
-		ft_error(d, "Invalid texture");
+		ft_error(d, "addr: Invalid texture");
 	}
 	check_size(d, img->height, img->width);
 	img->img_loaded = TRUE;
@@ -50,7 +48,7 @@ int	valid_path(t_data *d, char *path)
 	int	fd;
 
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	if (fd < 0 || check_dir(path))
 	{
 		ft_error(d, "wrong texture path");
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: eramusho <eramusho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:22:48 by doduwole          #+#    #+#             */
-/*   Updated: 2023/12/15 19:57:22 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:08:03 by eramusho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,8 @@ void			map_len_check(t_data *d, t_game *game);
 /*------utils.c-------*/
 int				n_instances(char *str, char c);
 void			init_game(t_game *game);
+int				check_dir(char *filename);
+// int				check_player_wall(char **map, int y, int x);
 
 /*------color.c-------*/
 int				get_rgb(t_data *d, char *num);
