@@ -25,3 +25,5 @@ Display of an image and respects the following rules:
 		*North Texture:
 		NO ./path_to_the_north_texture
 - If any misconfiguration of any kind is encountered in the file, the program must exit properly and return "Error\n" followed by an explicit error message of your choice.
+
+![CUB3D_ ANIM](https://github.com/erwkuvi/cub3d_42/blob/main/assets/cub3d_anim.gif)
